@@ -1,11 +1,10 @@
-
 package main
 
 import (
     "fmt"
 )
 
-func newgames() {
+func NewGames() {
     fmt.Println("Bienvenue dans le jeu du pendu ! en go")
 
     pseudo := "leandro"

@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func selection() {
+func main() {
 	contenu, err := os.ReadFile("mot.txt")
 	if err != nil {
 		fmt.Println("Erreur :", err)
@@ -17,5 +17,5 @@ func selection() {
 	mots := strings.Split(strings.TrimSpace(string(contenu)), "\n")
 	mot := mots[rand.Intn(len(mots))]
 
-	fmt.Println(mot)
+	IndicateLetter(mot)
 }
