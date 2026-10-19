@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func main() {
+func selection() {
 	contenu, err := os.ReadFile("mot.txt")
 	if err != nil {
 		fmt.Println("Erreur :", err)
