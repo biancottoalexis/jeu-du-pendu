@@ -1,0 +1,12 @@
+```text
+labyrinthe
+astronomie
+philosophie
+architecture
+extraordinaire
+metamorphose
+encyclopedie
+hippopotame
+chrysantheme
+parallelepipede
+```
