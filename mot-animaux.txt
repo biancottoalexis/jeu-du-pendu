@@ -1,4 +1,3 @@
-```text
 chat
 chien
 cheval
@@ -19,4 +18,3 @@ requin
 dauphin
 tortue
 serpent
-```

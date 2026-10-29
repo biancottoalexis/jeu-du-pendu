@@ -1,4 +1,3 @@
-```text
 france
 italie
 espagne
@@ -39,4 +38,3 @@ ukraine
 croatie
 serbie
 roumanie
-```

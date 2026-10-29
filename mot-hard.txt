@@ -1,4 +1,3 @@
-```text
 labyrinthe
 astronomie
 philosophie
@@ -9,4 +8,3 @@ encyclopedie
 hippopotame
 chrysantheme
 parallelepipede
-```

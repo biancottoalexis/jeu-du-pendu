@@ -1,4 +1,3 @@
-```text
 maison
 table
 chaise
@@ -19,4 +18,3 @@ musique
 jardin
 montagne
 riviere
-```

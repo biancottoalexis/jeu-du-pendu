@@ -1,13 +1,16 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"strings"
 )
 
-func IndicateLetter(mot string) {
+func IndicateLetter(mot string) bool {
 	essaie := 6
 	proposees := ""
+	scanner := bufio.NewScanner(os.Stdin)
 
 	for essaie > 0 {
 		masque := ""
@@ -25,13 +28,13 @@ func IndicateLetter(mot string) {
 		if !strings.Contains(masque, "_") {
 			fmt.Println()
 			fmt.Println("Bravo, le mot était", mot, "!")
-			return
+			return false
 		}
 
 		fmt.Println()
 
 		// dessin fait par Ia en bas
-		largeur := len([]rune("Mot : "+masque)) + 8
+		largeur := len([]rune("Mot :"+masque)) + 8
 		if largeur < 30 {
 			largeur = 30
 		}
@@ -69,23 +72,45 @@ func IndicateLetter(mot string) {
 
 		afficher("", "|")
 		afficher("", "_|_")
-// fin du dessin fait par Ia
-		
+		// fin du dessin fait par Ia
 
-        fmt.Println()
+		fmt.Println()
 		fmt.Println("Lettres proposées :", proposees)
 		fmt.Print("> ")
 
-		var lettre string
-		fmt.Scan(&lettre)
-		lettre = strings.ToLower(lettre)
+		if !scanner.Scan() {
+			return false
+		}
+
+		lettre := strings.ToLower(strings.TrimSpace(scanner.Text()))
+
+		if lettre == "" {
+			fmt.Println("Erreur : entrez une lettre valide.")
+			continue
+		}
+
+		if lettre == "!menu" {
+			fmt.Println("Retour au menu principal...")
+			return true
+		}
+
+		if lettre == "!save" {
+			fmt.Println("Partie sauvegardée")
+			continue
+		}
 
 		if len([]rune(lettre)) != 1 || lettre < "a" || lettre > "z" {
 			fmt.Println("Entrée invalide : -2 essais")
 			essaie -= 2
-		} else if strings.Contains(proposees, lettre) {
+			continue
+		}
+
+		if strings.Contains(proposees, lettre) {
 			fmt.Println("Erreur : lettre déjà proposée.")
-		} else if strings.Contains(mot, lettre) {
+			continue
+		}
+
+		if strings.Contains(mot, lettre) {
 			proposees += lettre
 			fmt.Println("Bien joué !")
 		} else {
@@ -97,7 +122,6 @@ func IndicateLetter(mot string) {
 
 	fmt.Println()
 	fmt.Println("Mot :", mot)
-// dessin fait par Ia en bas
 	fmt.Println()
 	fmt.Println("Perdu ! Le mot était :", mot)
 	fmt.Println()
@@ -109,4 +133,6 @@ func IndicateLetter(mot string) {
 	fmt.Println("       |")
 	fmt.Println("      _|_")
 	// fin du dessin fait par Ia
+
+	return false
 }
