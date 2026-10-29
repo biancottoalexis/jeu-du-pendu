@@ -22,7 +22,7 @@ func newgames() {
 		if choix == "1" {
 			nouvellePartie()
 		} else if choix == "2" {
-			fmt.Println("")
+			fmt.Println("La reprise de partie sera ajoutee plus tard.")
 		} else if choix == "3" {
 			fmt.Println("Au revoir !")
 			return
@@ -56,7 +56,6 @@ func nouvellePartie() {
 - Les majuscules et minuscules sont equivalentes.
 - Taper !save sauvegarde la partie.
 - Taper !menu revient au menu principal.
-- Le jeu utilise mot.txt, save.json et scores.csv.
 `)
 			break
 		} else if choix == "non" {
@@ -143,4 +142,25 @@ func nouvellePartie() {
 	fmt.Println("Proposez une lettre.")
 
 	IndicateLetter(mot)
+
+	fmt.Println()
+	fmt.Println("========== FIN DE LA PARTIE ==========")
+	fmt.Println("1. Rejouer le meme mot")
+	fmt.Println("2. Faire une nouvelle partie")
+	fmt.Println("3. Retourner au menu principal")
+
+	fmt.Print("Votre choix : ")
+
+	var fin string
+	fmt.Scanln(&fin)
+
+	if fin == "1" {
+		IndicateLetter(mot)
+	} else if fin == "2" {
+		nouvellePartie()
+	} else if fin == "3" {
+		return
+	} else {
+		fmt.Println("Choix invalide.")
+	}
 }
