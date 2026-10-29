@@ -3,13 +3,18 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"math/rand"
 	"os"
 	"strings"
 )
 
 func IndicateLetter(mot string) bool {
 	essaie := 6
-	proposees := ""
+	numero := rand.Intn(len(mot))
+	proposees := string(mot[numero])
+	if proposees == "-" {
+		proposees = string(mot[0])
+	}
 	scanner := bufio.NewScanner(os.Stdin)
 
 	for essaie > 0 {
@@ -99,9 +104,42 @@ func IndicateLetter(mot string) bool {
 			continue
 		}
 
-		if len([]rune(lettre)) != 1 || lettre < "a" || lettre > "z" {
-			fmt.Println("Entrée invalide : -2 essais")
+		if len(lettre) > 1 {
+			valide := true
+			for _, c := range lettre {
+				if (c < 'a' || c > 'z') && c != '-' {
+					valide = false
+				}
+			}
+
+			if valide == false {
+				fmt.Println("Erreur : un mot ne contient que des lettres et des tirets.")
+				continue
+			}
+
+			if essaie < 2 {
+				fmt.Println("Erreur : il faut au moins 2 essais pour proposer un mot.")
+				continue
+			}
+
+			if len(lettre) != len(mot) {
+				fmt.Println("Erreur : le mot doit avoir", len(mot), "lettres.")
+				continue
+			}
+
+			if lettre == mot {
+				fmt.Println()
+				fmt.Println("Bravo, le mot était", mot, "!")
+				return false
+			}
+
+			fmt.Println("Raté, ce n'est pas le bon mot ! -2 essais")
 			essaie -= 2
+			continue
+		}
+
+		if len([]rune(lettre)) != 1 || lettre < "a" || lettre > "z" {
+			fmt.Println("Erreur : entrez une seule lettre.")
 			continue
 		}
 
