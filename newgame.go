@@ -164,3 +164,5 @@ func nouvellePartie() {
 		fmt.Println("Choix invalide.")
 	}
 }
+
+djjd
