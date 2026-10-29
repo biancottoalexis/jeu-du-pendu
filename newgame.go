@@ -164,3 +164,4 @@ func nouvellePartie() {
 		fmt.Println("Choix invalide.")
 	}
 }
+gqukb
