@@ -9,7 +9,6 @@ import (
 )
 
 func IndicateLetter(pseudo string, mot string, proposees string, essaie int) bool {
-	essaie := 6
 	numero := rand.Intn(len(mot))
 	proposees := string(mot[numero])
 	if proposees == "-" {
