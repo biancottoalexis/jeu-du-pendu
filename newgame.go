@@ -141,7 +141,7 @@ func nouvellePartie() {
 	fmt.Println("Tapez !menu pour revenir au menu principal.")
 	fmt.Println("Proposez une lettre.")
 
-	IndicateLetter(mot)
+	IndicateLetter(pseudo, mot, lettreDepart(mot), 6)
 
 	fmt.Println()
 	fmt.Println("========== FIN DE LA PARTIE ==========")
