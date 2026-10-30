@@ -9,11 +9,7 @@ import (
 )
 
 func IndicateLetter(pseudo string, mot string, proposees string, essaie int) bool {
-	numero := rand.Intn(len(mot))
-	proposees := string(mot[numero])
-	if proposees == "-" {
-		proposees = string(mot[0])
-	}
+	
 	scanner := bufio.NewScanner(os.Stdin)
 
 	for essaie > 0 {
