@@ -1,7 +1,9 @@
+
 package main
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"os"
 	"strings"
@@ -40,7 +42,12 @@ func sauvegarder(pseudo string, mot string, lettres string, essais int) {
 func reprendre() {
 	data, err := os.ReadFile("save.json")
 	if err != nil {
-		fmt.Println("Aucune sauvegarde")
+		if errors.Is(err, os.ErrNotExist) {
+			fmt.Println("Aucune sauvegarde")
+			os.Exit(1)
+		}
+
+		fmt.Println("Erreur lors de la lecture :", err)
 		return
 	}
 
@@ -63,3 +70,4 @@ func reprendre() {
 		save.Essais,
 	)
 }
+//aide avec l'ia et documentation golang 

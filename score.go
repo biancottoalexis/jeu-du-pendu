@@ -65,4 +65,4 @@ func afficherScores() {
 	}
 }
 
-// aide à l'intelligence artificiel 
+// aide à l'intelligence artificiel et documentation golang 
