@@ -155,7 +155,7 @@ func nouvellePartie() {
 	fmt.Scanln(&fin)
 
 	if fin == "1" {
-		IndicateLetter(mot)
+		IndicateLetter(pseudo, mot, lettreDepart(mot), 6)
 	} else if fin == "2" {
 		nouvellePartie()
 	} else if fin == "3" {

@@ -8,8 +8,16 @@ import (
 	"strings"
 )
 
+func lettreDepart(mot string) string {
+	numero := rand.Intn(len(mot))
+	lettre := string(mot[numero])
+	if lettre == "-" {
+		lettre = string(mot[0])
+	}
+	return lettre
+}
+
 func IndicateLetter(pseudo string, mot string, proposees string, essaie int) bool {
-	
 	scanner := bufio.NewScanner(os.Stdin)
 
 	for essaie > 0 {
@@ -28,6 +36,7 @@ func IndicateLetter(pseudo string, mot string, proposees string, essaie int) boo
 		if !strings.Contains(masque, "_") {
 			fmt.Println()
 			fmt.Println("Bravo, le mot était", mot, "!")
+			ajouterScore(pseudo, "victoire", essaie, mot, proposees)
 			return false
 		}
 
@@ -95,8 +104,8 @@ func IndicateLetter(pseudo string, mot string, proposees string, essaie int) boo
 		}
 
 		if lettre == "!save" {
-			fmt.Println("Partie sauvegardée")
-			continue
+			sauvegarder(pseudo, mot, proposees, essaie)
+			os.Exit(0)
 		}
 
 		if len(lettre) > 1 {
@@ -125,6 +134,7 @@ func IndicateLetter(pseudo string, mot string, proposees string, essaie int) boo
 			if lettre == mot {
 				fmt.Println()
 				fmt.Println("Bravo, le mot était", mot, "!")
+				ajouterScore(pseudo, "victoire", essaie, mot, proposees)
 				return false
 			}
 
@@ -157,6 +167,7 @@ func IndicateLetter(pseudo string, mot string, proposees string, essaie int) boo
 	fmt.Println("Mot :", mot)
 	fmt.Println()
 	fmt.Println("Perdu ! Le mot était :", mot)
+	ajouterScore(pseudo, "defaite", 0, mot, proposees)
 	fmt.Println()
 	fmt.Println("       +---+")
 	fmt.Println("       |   |")

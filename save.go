@@ -22,7 +22,7 @@ func sauvegarder(pseudo string, mot string, lettres string, essais int) {
 		Essais:  essais,
 	}
 
-	contenu, err := json.Marshal(save)
+	data, err := json.Marshal(save)
 	if err != nil {
 		fmt.Println("Erreur")
 		return
