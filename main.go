@@ -15,12 +15,10 @@ func main() {
 
 	if commande == "jouer" {
 		nouvellePartie()
-	} else if commande == reprendre() {
-		fmt.Println("Erreur : la reprise n'est pas encore faite.")
-		os.Exit(1)
-	} else if commande == score() {
-		fmt.Println("Erreur : les scores ne sont pas encore faits.")
-		os.Exit(1)
+	} else if commande == "reprendre" {
+		reprendre()
+	} else if commande == "score" {
+		afficherScores()
 	} else {
 		fmt.Println("Usage : go run . <jouer|reprendre|score>")
 		os.Exit(1)
