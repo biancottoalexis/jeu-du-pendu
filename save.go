@@ -70,4 +70,4 @@ func reprendre() {
 		save.Essais,
 	)
 }
-//aide avec l'ia et documentation golang 
+//aide avec l'ia 

@@ -45,7 +45,7 @@ func nouvellePartie() {
 		if choix == "oui" {
 			fmt.Println()
 			fmt.Println("========== REGLES DU JEU ==========")
-			fmt.Println(`
+			fmt.Print(`
 - Le programme choisit un mot au hasard.
 - Le joueur propose une lettre a chaque tour.
 - Si la lettre est dans le mot, ses occurrences sont revelees.

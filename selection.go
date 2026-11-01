@@ -4,39 +4,53 @@ import (
 	"fmt"
 	"math/rand/v2"
 	"os"
+	"strings"
 )
 
 func choisirMot(nomFichier string) string {
 	contenu, err := os.ReadFile(nomFichier)
 	if err != nil {
-		fmt.Println("Erreur de lecture de", nomFichier)
+		fmt.Println("Erreur de lecture du fichier")
 		return ""
 	}
 
+	lignes := strings.Split(string(contenu), "\n")
+
 	var mots []string
-	mot := ""
 
-	for _, lettre := range string(contenu) {
-		if lettre == ' ' || lettre == '\n' || lettre == '\t' || lettre == '\r' {
-			if mot != "" {
-				mots = append(mots, mot)
-				mot = ""
-			}
-		} else {
-			mot += string(lettre)
+	for _, mot := range lignes {
+		mot = strings.TrimSpace(mot)
+		mot = strings.ToLower(mot)
+
+		if mot == "" {
+			continue
 		}
-	}
 
-	if mot != "" {
+		if !estValide(mot) {
+			continue
+		}
+
 		mots = append(mots, mot)
 	}
 
 	if len(mots) == 0 {
-		fmt.Println("Le fichier", nomFichier, "est vide.")
+		fmt.Println("Aucun mot valide")
 		return ""
 	}
 
-	return mots[rand.IntN(len(mots))]
+	index := rand.IntN(len(mots))
+
+	return mots[index]
+}
+
+func estValide(mot string) bool {
+	for _, lettre := range mot {
+		if (lettre < 'a' || lettre > 'z') && lettre != '-' {
+			return false
+		}
+	}
+
+	return true
 }
 
 func selectionanimaux() string {
